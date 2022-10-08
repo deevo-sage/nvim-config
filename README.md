@@ -2,7 +2,7 @@
 
 Yes i use Coc-nvim now what to do 
  
-this uses some of thePrimagen's and the craftzdog's config + thoda custom shtuffffzzzz
+this uses some of thePrimagen's and craftzdog's config + thoda custom shtuffffzzzz
 
 
 ## references
