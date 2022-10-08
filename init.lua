@@ -1,4 +1,4 @@
-require("sid")
+require("theprimeagen")
 
 local has = function(x)
     return vim.fn.has(x) == 1
