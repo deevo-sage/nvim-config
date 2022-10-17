@@ -1,4 +1,3 @@
-require("theprimeagen.packer")
 require("theprimeagen")
 
 local has = function(x)

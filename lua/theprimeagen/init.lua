@@ -1,4 +1,5 @@
 require("theprimeagen.set")
+require("theprimeagen.packer")
 require("theprimeagen.neogit")
 require("theprimeagen.text-me-daddy")
 require("nvim-lsp-installer").setup({})
