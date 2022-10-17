@@ -196,7 +196,6 @@ require("lspconfig").sumneko_lua.setup(config({
         },
     },
 }))
-]] --
 
 local function config(_config)
     return vim.tbl_deep_extend("force", {
@@ -226,3 +225,4 @@ require("lspconfig").rust_analyzer.setup(config({
         },
     }
 }))
+--]]
