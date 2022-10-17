@@ -1,5 +1,4 @@
-require('packer')
-vim.cmd [[packadd packer.nvim]]
+require("theprimeagen.packer")
 require("theprimeagen")
 
 local has = function(x)
