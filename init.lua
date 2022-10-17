@@ -1,6 +1,4 @@
-require('packer').startup(function()
-    use 'wbthomason/packer.nvim'
-end)
+require('packer')
 require("theprimeagen")
 
 local has = function(x)
