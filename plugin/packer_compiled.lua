@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/coc.nvim",
     url = "https://github.com/neoclide/coc.nvim"
   },
+  ["copilot.vim"] = {
+    loaded = true,
+    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/copilot.vim",
+    url = "https://github.com/github/copilot.vim"
+  },
   fd = {
     loaded = true,
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/fd",

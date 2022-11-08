@@ -69,7 +69,8 @@ vim.keymap.set('n', ';;', function()
     builtin.resume()
 end)
 vim.keymap.set('n', ';e', function()
-    builtin.diagnostics()
+    vim.cmd [[Telescope coc diagnostics]]
+    --    builtin.diagnostics()
 end)
 vim.keymap.set("n", "sf", function()
     telescope.extensions.file_browser.file_browser({
