@@ -1,4 +1,5 @@
 local status, lspkind = pcall(require, "lspkind")
+
 if (not status) then return end
 
 lspkind.init({
@@ -20,8 +21,7 @@ lspkind.init({
     symbol_map = {
         Text = "",
         Method = "",
-        Function = "",
-        Constructor = "",
+        Function = "", Constructor = "",
         Field = "",
         Variable = "",
         Class = "",
@@ -45,3 +45,4 @@ lspkind.init({
         TypeParameter = ""
     },
 })
+

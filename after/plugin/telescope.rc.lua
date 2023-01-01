@@ -47,7 +47,7 @@ telescope.setup {
 }
 
 telescope.load_extension("file_browser")
-telescope.load_extension("coc")
+--telescope.load_extension("coc")
 
 
 vim.keymap.set('n', ';f',
@@ -69,17 +69,18 @@ vim.keymap.set('n', ';;', function()
     builtin.resume()
 end)
 vim.keymap.set('n', ';e', function()
-    vim.cmd [[Telescope coc diagnostics]]
-    --    builtin.diagnostics()
+    --vim.cmd [[Telescope coc diagnostics]]
+    builtin.diagnostics()
 end)
 vim.keymap.set("n", "sf", function()
     telescope.extensions.file_browser.file_browser({
+        hijack_netrw = true,
         path = "%:p:h",
         cwd = telescope_buffer_dir(),
         respect_gitignore = false,
-        hidden = true,
-        grouped = true,
-        initial_mode = "normal",
-        layout_config = { height = 30 }
+        --hidden = true,
+        --grouped = true,
+        --initial_mode = "normal",
+        -- layout_config = { height = 15 }
     })
 end)

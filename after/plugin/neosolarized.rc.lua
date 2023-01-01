@@ -1,4 +1,4 @@
-vim.cmd [[colorscheme moonfly]]
+--vim.cmd [[colorscheme moonfly]]
 --[[
 local status, n = pcall(require, "neosolarized")
 

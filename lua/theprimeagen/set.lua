@@ -42,4 +42,4 @@ vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
 
-vim.opt.foldmethod= "indent"
+--vim.opt.foldmethod= "indent"

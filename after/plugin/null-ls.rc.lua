@@ -1,16 +1,15 @@
 local status, null_ls = pcall(require, 'null-ls')
 if (not status) then return end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
---[[
 null_ls.setup {
     sources = {
         null_ls.builtins.formatting.prettier.with({
             env = {
-                PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/coding/appbrew/gauntlet/.prettierrc"),
+                PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/work/appbrew/gauntlet/.prettierrc"),
             },
         }),
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.completion.spell,
+        --null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.completion.luasnip,
     },
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
@@ -27,5 +26,3 @@ null_ls.setup {
         end
     end,
 }
-]]
---

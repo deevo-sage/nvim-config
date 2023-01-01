@@ -2,27 +2,11 @@ require("theprimeagen.set")
 require("theprimeagen.packer")
 require("theprimeagen.neogit")
 require("theprimeagen.text-me-daddy")
-require("nvim-lsp-installer").setup({})
-local null_ls = require("null-ls")
+--require("nvim-lsp-installer").setup({})
 
 -- print(require("null-ls").builtins.formatting)
 local lspconfig = require("lspconfig")
 lspconfig.sumneko_lua.setup({ on_attach = on_attach })
-
-
--- null_ls.setup({
---     sources = {
---         null_ls.builtins.formatting.prettier.with({
---             env = {
---                 PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/coding/appbrew/gauntlet/.prettierrc"),
---             },
---         }),
---         null_ls.builtins.diagnostics.eslint,
---         null_ls.builtins.completion.spell,
---     },
--- })
--- lspconfig["null-ls"].setup({
--- })
 
 local augroup = vim.api.nvim_create_augroup
 ThePrimeagenGroup = augroup('ThePrimeagen', {})
@@ -59,7 +43,8 @@ vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
-
+--[[
+--
 require("presence"):setup({
     --    auto_update        = true, -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
     --    neovim_image_text  = "The One True Text Editor", -- Text displayed when hovered over the Neovim image
@@ -82,3 +67,4 @@ require("presence"):setup({
     --workspace_text      = "Working on %s", -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
     --line_number_text    = "Line %s out of %s", -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
 })
+--]]

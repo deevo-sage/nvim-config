@@ -7,10 +7,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Setup nvim-cmp.
---[[
 local cmp = require("cmp")
 local source_mapping = {
-    youtube = "[Suck it YT]",
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
     nvim_lua = "[Lua]",
@@ -22,10 +20,11 @@ local lspkind = require("lspkind")
 cmp.setup({
     snippet = {
         expand = function(args)
-            -- For `vsnip` user. vim.fn["vsnip#anonymous"](args.body)
+            -- For `vsnip` user.
+            vim.fn["vsnip#anonymous"](args.body)
 
             -- For `luasnip` user.
-            require("luasnip").lsp_expand(args.body)
+            --require("luasnip").lsp_expand(args.body)
 
             -- For `ultisnips` user.
             -- vim.fn["UltiSnips#Anon"](args.body)
@@ -39,7 +38,20 @@ cmp.setup({
     }),
 
     formatting = {
-        format = function(entry, vim_item)
+        format = lspkind.cmp_format({
+            mode = 'symbol', -- show only symbol annotations
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            before = function(entry, vim_item)
+                --        ...
+                return vim_item
+            end
+        })
+        --[[
+    format = function(entry, vim_item)
             vim_item.kind = lspkind.presets.default[vim_item.kind]
             local menu = source_mapping[entry.source.name]
             if entry.source.name == "cmp_tabnine" then
@@ -51,6 +63,7 @@ cmp.setup({
             vim_item.menu = menu
             return vim_item
         end,
+----]]
     },
 
     sources = {
@@ -61,7 +74,7 @@ cmp.setup({
         { name = "nvim_lsp" },
 
         -- For vsnip user.
-        -- { name = 'vsnip' },
+        --{ name = 'vsnip' },
 
         -- For luasnip user.
         { name = "luasnip" },
@@ -71,28 +84,16 @@ cmp.setup({
 
         { name = "buffer" },
 
-        { name = "youtube" },
     },
 })
---]]
--- local tabnine = require("cmp_tabnine.config")
--- tabnine:setup({
--- 	max_lines = 1000,
--- 	max_num_results = 20,
--- 	sort = true,
--- 	run_on_every_keystroke = true,
--- 	snippet_placeholder = "..",
--- })
---[[
---
 local function config(_config)
     return vim.tbl_deep_extend("force", {
-        capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+        --capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
         on_attach = function()
             nnoremap("gd", function() vim.lsp.buf.definition() end)
             nnoremap("K", function() vim.lsp.buf.hover() end)
             nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
-            nnoremap("<leader>vd", function() vim.diagnostic.open_float() end)
+            nnoremap("<leader>q", function() vim.diagnostic.open_float() end)
             nnoremap("[d", function() vim.diagnostic.goto_next() end)
             nnoremap("]d", function() vim.diagnostic.goto_prev() end)
             nnoremap("<leader>vca", function() vim.lsp.buf.code_action() end)
@@ -102,6 +103,18 @@ local function config(_config)
         end,
     }, _config or {})
 end
+
+-- local tabnine = require("cmp_tabnine.config")
+-- tabnine:setup({
+-- 	max_lines = 1000,
+-- 	max_num_results = 20,
+-- 	sort = true,
+-- 	run_on_every_keystroke = true,
+-- 	snippet_placeholder = "..",
+-- })
+--
+--[[
+--
 
 require("lspconfig").zls.setup(config())
 
@@ -128,13 +141,13 @@ saga.init_lsp_saga {
     }
 }
 
---[[
 require("lspconfig").tsserver.setup(config({
-    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    --capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
     on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
+        --client.server_capabilities.document_formatting = false
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
     end,
 
@@ -164,7 +177,6 @@ require("lspconfig").gopls.setup(config({
 -- who even uses this?
 require("lspconfig").rust_analyzer.setup(config({
     cmd = { "rustup", "run", "nightly", "rust-analyzer" },
-    --[[
     settings = {
         rust = {
             unstable_features = true,
@@ -196,33 +208,43 @@ require("lspconfig").sumneko_lua.setup(config({
         },
     },
 }))
-
-local function config(_config)
-    return vim.tbl_deep_extend("force", {
-        capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-        on_attach = function()
-            nnoremap("gd", function() vim.lsp.buf.definition() end)
-            nnoremap("K", function() vim.lsp.buf.hover() end)
-            nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
-            nnoremap("<leader>vd", function() vim.diagnostic.open_float() end)
-            nnoremap("[d", function() vim.diagnostic.goto_next() end)
-            nnoremap("]d", function() vim.diagnostic.goto_prev() end)
-            nnoremap("<leader>vca", function() vim.lsp.buf.code_action() end)
-            nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
-            nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
-            inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
-        end,
-    }, _config or {})
-end
-
-require("lspconfig").rust_analyzer.setup(config({
-    cmd = { "rustup", "run", "nightly", "rust-analyzer" },
-    settings = {
-        rust = {
-            unstable_features = true,
-            build_on_save = false,
-            all_features = true,
-        },
-    }
-}))
 --]]
+--
+require("lspconfig").tsserver.setup(config({
+    --capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    on_attach = function(client, bufnr)
+
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities = {
+            codeActionProvider = {
+                resolveProvider = false
+            },
+            completionProvider = {
+                allCommitCharacters = {},
+                completionItem = {
+                    labelDetailsSupport = true
+                },
+                resolveProvider = false,
+                triggerCharacters = { ".", ":", "-" }
+            },
+            documentFormattingProvider = false,
+            documentRangeFormattingProvider = false,
+            executeCommandProvider = true,
+            hoverProvider = false,
+            textDocumentSync = {
+                change = 1,
+                openClose = true,
+                save = {
+                    includeText = true
+                }
+            }
+        }
+        --client.server_capabilities.document_formatting = false
+        --vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
+    end,
+
+}))
+vim.diagnostic.config({ virtual_text = false, signs = false })
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

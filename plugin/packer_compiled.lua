@@ -79,11 +79,6 @@ _G.packer_plugins = {
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ale = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/ale",
-    url = "https://github.com/dense-analysis/ale"
-  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -109,20 +104,10 @@ _G.packer_plugins = {
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["coc.nvim"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/coc.nvim",
-    url = "https://github.com/neoclide/coc.nvim"
-  },
   ["copilot.vim"] = {
     loaded = true,
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
-  },
-  fd = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/fd",
-    url = "https://github.com/sharkdp/fd"
   },
   ["git-worktree.nvim"] = {
     loaded = true,
@@ -155,6 +140,7 @@ _G.packer_plugins = {
     url = "https://github.com/onsails/lspkind-nvim"
   },
   ["lspsaga.nvim"] = {
+    config = { "\27LJ\2\nA\0\0\4\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0004\3\0\0B\1\2\1K\0\1\0\18init_lsp_saga\flspsaga\frequire\0" },
     loaded = true,
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/glepnir/lspsaga.nvim"
@@ -178,11 +164,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
-  },
-  neoformat = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/neoformat",
-    url = "https://github.com/sbdchd/neoformat"
   },
   neogit = {
     loaded = true,
@@ -213,26 +194,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
-  },
-  ["nvim-dap"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/nvim-dap",
-    url = "https://github.com/mfussenegger/nvim-dap"
-  },
-  ["nvim-dap-ui"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
-    url = "https://github.com/rcarriga/nvim-dap-ui"
-  },
-  ["nvim-dap-virtual-text"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text",
-    url = "https://github.com/theHamsta/nvim-dap-virtual-text"
-  },
-  ["nvim-lsp-installer"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
-    url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -274,25 +235,10 @@ _G.packer_plugins = {
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  ["presence.nvim"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/presence.nvim",
-    url = "https://github.com/andweeb/presence.nvim"
-  },
-  ["prettier.nvim"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/prettier.nvim",
-    url = "https://github.com/MunifTanjim/prettier.nvim"
-  },
   ["symbols-outline.nvim"] = {
     loaded = true,
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
     url = "https://github.com/simrat39/symbols-outline.nvim"
-  },
-  ["telescope-coc.nvim"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/telescope-coc.nvim",
-    url = "https://github.com/fannheyward/telescope-coc.nvim"
   },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
@@ -309,30 +255,10 @@ _G.packer_plugins = {
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
-  ["typescript-vim"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/typescript-vim",
-    url = "https://github.com/leafgarland/typescript-vim"
-  },
   undotree = {
     loaded = true,
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
-  },
-  ["vim-graphql"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/vim-graphql",
-    url = "https://github.com/jparise/vim-graphql"
-  },
-  ["vim-javascript"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/vim-javascript",
-    url = "https://github.com/pangloss/vim-javascript"
-  },
-  ["vim-jsx-typescript"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/vim-jsx-typescript",
-    url = "https://github.com/peitalin/vim-jsx-typescript"
   },
   ["vim-moonfly-colors"] = {
     loaded = true,
@@ -344,11 +270,6 @@ _G.packer_plugins = {
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/vim-multiple-cursors",
     url = "https://github.com/terryma/vim-multiple-cursors"
   },
-  ["vim-styled-components"] = {
-    loaded = true,
-    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/vim-styled-components",
-    url = "https://github.com/styled-components/vim-styled-components"
-  },
   ["zen-mode.nvim"] = {
     loaded = true,
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
@@ -357,6 +278,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+try_loadstring("\27LJ\2\nA\0\0\4\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0004\3\0\0B\1\2\1K\0\1\0\18init_lsp_saga\flspsaga\frequire\0", "config", "lspsaga.nvim")
+time([[Config for lspsaga.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
