@@ -339,6 +339,11 @@ _G.packer_plugins = {
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/vim-moonfly-colors",
     url = "https://github.com/bluz71/vim-moonfly-colors"
   },
+  ["vim-multiple-cursors"] = {
+    loaded = true,
+    path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/vim-multiple-cursors",
+    url = "https://github.com/terryma/vim-multiple-cursors"
+  },
   ["vim-styled-components"] = {
     loaded = true,
     path = "/Users/sidharthsahni/.local/share/nvim/site/pack/packer/start/vim-styled-components",
