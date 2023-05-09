@@ -3,12 +3,12 @@ if (not status) then return end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup {
     sources = {
-        null_ls.builtins.formatting.prettier.with({
+        null_ls.builtins.formatting.prettierd.with({
             env = {
-                PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/work/appbrew/gauntlet/.prettierrc"),
+                PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/work/appbrew/.prettierrc"),
             },
         }),
-        --null_ls.builtins.diagnostics.eslint,
+        --null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.completion.luasnip,
     },
     on_attach = function(client, bufnr)
@@ -19,7 +19,7 @@ null_ls.setup {
                 buffer = bufnr,
                 callback = function()
                     -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                    vim.lsp.buf.formatting_sync()
+                    vim.lsp.buf.format({async=false})
 
                 end,
             })

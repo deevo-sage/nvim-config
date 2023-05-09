@@ -7,6 +7,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Setup nvim-cmp.
+--[[-
 local cmp = require("cmp")
 local source_mapping = {
     buffer = "[Buffer]",
@@ -16,7 +17,6 @@ local source_mapping = {
     path = "[Path]",
 }
 local lspkind = require("lspkind")
-
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -63,7 +63,6 @@ cmp.setup({
             vim_item.menu = menu
             return vim_item
         end,
-----]]
     },
 
     sources = {
@@ -86,6 +85,7 @@ cmp.setup({
 
     },
 })
+---]]
 local function config(_config)
     return vim.tbl_deep_extend("force", {
         --capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
@@ -211,36 +211,12 @@ require("lspconfig").sumneko_lua.setup(config({
 --]]
 --
 require("lspconfig").tsserver.setup(config({
-    --capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
     on_attach = function(client, bufnr)
 
         client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities = {
-            codeActionProvider = {
-                resolveProvider = false
-            },
-            completionProvider = {
-                allCommitCharacters = {},
-                completionItem = {
-                    labelDetailsSupport = true
-                },
-                resolveProvider = false,
-                triggerCharacters = { ".", ":", "-" }
-            },
-            documentFormattingProvider = false,
-            documentRangeFormattingProvider = false,
-            executeCommandProvider = true,
-            hoverProvider = false,
-            textDocumentSync = {
-                change = 1,
-                openClose = true,
-                save = {
-                    includeText = true
-                }
-            }
-        }
         --client.server_capabilities.document_formatting = false
         --vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", {})
     end,

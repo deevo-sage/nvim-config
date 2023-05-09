@@ -10,10 +10,8 @@ local fb_actions = require "telescope".extensions.file_browser.actions
 
 telescope.setup {
     file_ignore_patterns = {
-        "node_modules/*",
-        "node_modules",
-        ".git",
-        ".git/*"
+        'node_modules',
+
     },
     defaults = {
         mappings = {
@@ -24,9 +22,13 @@ telescope.setup {
     },
     extensions = {
         file_browser = {
+        respect_gitignore = false,
+        path = "%:p:h",
+        grouped = true,
+hidden=true,
+        cwd = telescope_buffer_dir(),
             theme = "dropdown",
-
-            -- disables netrw and use telescope-file-browser in its place
+-- disables netrw and use telescope-file-browser in its place
             hijack_netrw = true,
             mappings = {
                 -- your custom insert mode mappings
@@ -47,13 +49,12 @@ telescope.setup {
 }
 
 telescope.load_extension("file_browser")
---telescope.load_extension("coc")
+telescope.load_extension("coc")
 
 
 vim.keymap.set('n', ';f',
     function()
-        builtin.find_files({
-            no_ignore = false,
+        builtin.find_files({ no_ignore = false,
         })
     end)
 vim.keymap.set('n', ';r', function()
@@ -74,12 +75,12 @@ vim.keymap.set('n', ';e', function()
 end)
 vim.keymap.set("n", "sf", function()
     telescope.extensions.file_browser.file_browser({
+        respect_gitignore = false,
         hijack_netrw = true,
         path = "%:p:h",
+        grouped = true,
         cwd = telescope_buffer_dir(),
-        respect_gitignore = false,
         --hidden = true,
-        --grouped = true,
         --initial_mode = "normal",
         -- layout_config = { height = 15 }
     })

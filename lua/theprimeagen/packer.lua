@@ -7,6 +7,58 @@ packer.startup(function(use)
     use("wbthomason/packer.nvim")
     use 'bluz71/vim-moonfly-colors'
     use { "catppuccin/nvim", as = "catppuccin" }
+    use {'nvim-orgmode/orgmode', config = function()
+        require('orgmode').setup{}
+    end
+    }
+    use( "christoomey/vim-tmux-navigator")
+
+
+  use({
+	  'rose-pine/neovim',
+	  as = 'rose-pine',
+	  config = function()
+		  vim.cmd('colorscheme rose-pine')
+	  end
+  })
+
+
+  use("eandrju/cellular-automaton.nvim")
+
+  use {
+	  'VonHeikemen/lsp-zero.nvim',
+	  branch = 'v1.x',
+	  requires = {
+		  -- LSP Support
+		  {'neovim/nvim-lspconfig'},
+		  {'williamboman/mason.nvim'},
+		  {'williamboman/mason-lspconfig.nvim'},
+-- Autocompletion
+		  {'hrsh7th/nvim-cmp'},
+		  {'hrsh7th/cmp-buffer'},
+		  {'hrsh7th/cmp-path'},
+		  {'saadparwaiz1/cmp_luasnip'},
+		  {'hrsh7th/cmp-nvim-lsp'},
+		  {'hrsh7th/cmp-nvim-lua'},
+
+		  -- Snippets
+		  {'L3MON4D3/LuaSnip'},
+		  {'rafamadriz/friendly-snippets'},
+	  }
+  }
+  use("tpope/vim-fugitive")
+  use({
+      "folke/trouble.nvim",
+      config = function()
+          require("trouble").setup {
+              icons = false,
+              -- your configuration comes here
+              -- or leave it empty to use the default settings
+              -- refer to the configuration section below
+          }
+      end
+  })
+
     -- Simple plugins can be specified as strings
     use("TimUntersberger/neogit")
     -- TJ created lodash of neovim
@@ -40,6 +92,15 @@ packer.startup(function(use)
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate"
     })
+use {
+  'nvim-tree/nvim-tree.lua',
+  requires = {
+    'nvim-tree/nvim-web-devicons', -- optional
+  },
+  config = function()
+    require("nvim-tree").setup {}
+  end
+}
     use("nvim-treesitter/nvim-treesitter-context")
     use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     use("svrana/neosolarized.nvim")
@@ -53,10 +114,7 @@ packer.startup(function(use)
     use 'windwp/nvim-ts-autotag'
     use 'norcalli/nvim-colorizer.lua'
     use 'folke/zen-mode.nvim'
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
     use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
     use 'terryma/vim-multiple-cursors'
     use({
@@ -64,12 +122,23 @@ packer.startup(function(use)
         branch = "main",
         config = function()
             local saga = require("lspsaga")
-
-            saga.init_lsp_saga({
-                -- your configuration
-            })
+            saga.setup{
+                server_filetype_map = {
+                    typescript = 'typescript'
+                }
+            }
+            local opts = { noremap = true, silent = true }
+            vim.keymap.set('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+            vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
+            vim.keymap.set('n', 'gd', '<Cmd>Lspsaga lsp_finder<CR>', opts)
+            vim.keymap.set('i', '<C-k>', '<Cmd>Lspsaga signature_help<CR>', opts)
+            vim.keymap.set('n', 'gp', '<Cmd>Lspsaga preview_definition<CR>', opts)
+            vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
         end,
     })
+    --use { 'neoclide/coc.nvim', branch = 'release' }
+    use 'fannheyward/telescope-coc.nvim'
+
     --use("mfussenegger/nvim-dap")
     --use("rcarriga/nvim-dap-ui")
     --use("theHamsta/nvim-dap-virtual-text")
@@ -77,10 +146,8 @@ packer.startup(function(use)
     --use 'andweeb/presence.nvim'
     --use("sbdchd/neoformat")
     --    use 'aurieh/discord.nvim'
-    --use { 'neoclide/coc.nvim', branch = 'release' }
     --use 'sharkdp/fd'
     --use 'dense-analysis/ale'
-    --use 'fannheyward/telescope-coc.nvim'
     --use('pangloss/vim-javascript')
     --use('leafgarland/typescript-vim')
     --use('peitalin/vim-jsx-typescript')
@@ -151,6 +218,153 @@ packer.startup(function(use)
 	use {'dracula/vim', as = 'dracula'}
 	end)
 	--]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

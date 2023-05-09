@@ -2,11 +2,9 @@ require("theprimeagen.set")
 require("theprimeagen.packer")
 require("theprimeagen.neogit")
 require("theprimeagen.text-me-daddy")
---require("nvim-lsp-installer").setup({})
 
--- print(require("null-ls").builtins.formatting)
 local lspconfig = require("lspconfig")
-lspconfig.sumneko_lua.setup({ on_attach = on_attach })
+lspconfig.lua_ls.setup({ on_attach = on_attach })
 
 local augroup = vim.api.nvim_create_augroup
 ThePrimeagenGroup = augroup('ThePrimeagen', {})
@@ -39,10 +37,35 @@ autocmd({ "BufWritePre" }, {
     command = "%s/\\s\\+$//e",
 })
 
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+
+--vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup()
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
 --[[
 --
 require("presence"):setup({
@@ -68,3 +91,4 @@ require("presence"):setup({
     --line_number_text    = "Line %s out of %s", -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
 })
 --]]
+--
